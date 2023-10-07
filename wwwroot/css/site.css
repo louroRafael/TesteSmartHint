@@ -23,3 +23,14 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+
+.page-description {
+    text-transform: uppercase;
+    color: gray;
+}
+
+.submenu-title {
+    color: lightgray;
+    font-size: 16px;
+    text-transform: uppercase;
+}

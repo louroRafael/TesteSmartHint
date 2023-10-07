@@ -4,69 +4,13 @@
 
 <div class="page-header">
     <div>
-        <h1 class="page-title">Clientes</h1>
-        <p class="page-description">Consulte os seus clientes cadastrados ou realize o cadastro de novos clientes</p>
+        <h1 class="page-title">Home</h1>
+        <p class="page-description">Tela inicial do Projeto</p>
     </div>
     <div>
-        <a class="btn btn-primary" data-bs-toggle="collapse" href="#customerFilter" role="button">
-            <i class="bi bi-filter"></i>
-            Filtrar
+        <a class="btn btn-primary" asp-controller="Customer" asp-action="Index" role="button">
+            Lista de Clientes
+            <i class="bi bi-person-lines-fill"></i>
         </a>
-        <button type="button" class="btn btn-primary">
-            <i class="bi bi-plus-lg"></i>
-            Adicionar Cliente
-        </button>
     </div>
 </div>
-
-<div class="collapse filter-options" id="customerFilter">
-    <div class="card">
-        <div class="card-body">
-            <form id="formCustomerFilter">
-                <div class="row">
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="nameInput">Nome/Razão Social</label>
-                            <input type="text" class="form-control" id="nameInput" placeholder="Nome ou Razão Social do Cliente">
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="emailInput">E-mail</label>
-                            <input type="text" class="form-control" id="emailInput" placeholder="E-mail do Cliente">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-5">
-                        <div class="form-group">
-                            <label for="phoneInput">Telefone</label>
-                            <input type="tel" class="form-control" id="phoneInput" placeholder="Telefone do Cliente">
-                        </div>
-                    </div>
-                    <div class="col-5">
-                        <div class="form-group">
-                            <label for="dateInput">Data de Cadastro</label>
-                            <input type="text" class="form-control" id="dateRangeInput" placeholder="Selecione uma Data ou Período">
-                        </div>
-                    </div>
-                    <div class="col-2">
-                        <div class="form-group">
-                            <label for="customerBlockSelect">Cliente Bloqueado</label>
-                            <select class="form-control" id="customerBlockSelect">
-                                <option>Sim</option>
-                                <option>Não</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <br/>
-                <div class="d-flex justify-content-end">
-                    <button type="button" class="btn btn-secondary m-1" onclick="clearForm()">Limpar Filtros</button>
-                    <button type="button" class="btn btn-primary m-1" onclick="filterCustomers()">Aplicar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-

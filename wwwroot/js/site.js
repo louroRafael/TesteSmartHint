@@ -1,4 +1,6 @@
 ﻿$(document).ready(function () {
+    $('#phoneInput').mask('(00) 00000-0000');
+
     $("#dateRangeInput").daterangepicker({
         opens: 'left',
         drops: 'down',
