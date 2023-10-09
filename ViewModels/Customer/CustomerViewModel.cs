@@ -1,10 +1,11 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
-namespace TesteSmartHint.Models
+namespace TesteSmartHint.Web.ViewModels.Customer
 {
-    public class CustomerRegisterViewModel
+    public class CustomerViewModel
     {
+        [Key]
         public Guid Id { get; set; }
 
         [Required, MaxLength(150)]

@@ -1,0 +1,16 @@
+CREATE DATABASE `TesteSmartHint`;
+
+      CREATE TABLE `__EFMigrationsHistory` (
+          `MigrationId` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
+          `ProductVersion` varchar(32) CHARACTER SET utf8mb4 NOT NULL,
+          CONSTRAINT `PK___EFMigrationsHistory` PRIMARY KEY (`MigrationId`)
+      )
+
+CREATE TABLE `Customers` (
+    `Id` char(36) COLLATE ascii_general_ci NOT NULL,
+    `Name` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
+    `Email` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
+    `Phone` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `CreatedAt` datetime(6) NOT NULL,
+    CONSTRAINT `PK_Customers` PRIMARY KEY (`Id`)
+);

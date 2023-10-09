@@ -1,7 +1,29 @@
+using Microsoft.EntityFrameworkCore;
+using TesteSmartHint.Domain.Interfaces;
+using TesteSmartHint.Infra.Context;
+using TesteSmartHint.Infra.Repositories;
+using TesteSmartHint.Infra.Settings;
+using TesteSmartHint.Web.Mapper;
+
 var builder = WebApplication.CreateBuilder(args);
+var settings = builder.Configuration.Get<Settings>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddAutoMapper(typeof(CustomerMapProfile));
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+
+builder.Services.AddDbContext<MyContext>(options =>
+{
+    options.UseMySql(
+        settings.MainDbConnection, 
+        ServerVersion.AutoDetect(settings.MainDbConnection),
+        options => options.EnableRetryOnFailure(
+            maxRetryCount: 5,
+            maxRetryDelay: TimeSpan.FromSeconds(30),
+            errorNumbersToAdd: null
+        ));
+});
 
 var app = builder.Build();
 
