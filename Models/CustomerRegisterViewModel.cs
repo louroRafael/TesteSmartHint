@@ -5,9 +5,10 @@ namespace TesteSmartHint.Models
 {
     public class CustomerRegisterViewModel
     {
-        
+        public Guid Id { get; set; }
+
         [Required, MaxLength(150)]
-        [DisplayName("Nome/Razão Social")]
+        [DisplayName("Nome do Cliente/Razão Social")]
         public string Name { get; set; }
 
         [Required, EmailAddress, MaxLength(150)]
@@ -17,5 +18,9 @@ namespace TesteSmartHint.Models
         [Required]
         [DisplayName("Telefone")]
         public string Phone { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayName("Data de Cadastro")]
+        public DateTime CreatedAt { get; set; }
     }
 }

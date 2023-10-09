@@ -7,7 +7,15 @@ namespace TesteSmartHint.Controllers
     {
         public IActionResult Index() => View();
 
-        public IActionResult Register() => View();
+        public IActionResult Register()
+        {
+            var model = new CustomerRegisterViewModel
+            {
+                CreatedAt = DateTime.Now
+            };
+
+            return View(model);
+        }
 
         public IActionResult Save(CustomerRegisterViewModel customer)
         {

@@ -23,25 +23,34 @@
             <h3 class="submenu-title">Principal</h3>
             <hr />
             <div class="row">
-                <div class="col-4">
+                <div class="col-6">
                     <div class="form-group">
                         @Html.LabelFor(x => x.Name)
                         @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Nome ou Razão Social do Cliente", maxlength = "150" }})
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-6">
                     <div class="form-group">
                         @Html.LabelFor(x => x.Email)
                         @Html.EditorFor(x => x.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "E-mail do Cliente", maxlength = "150" }})
                     </div>
                 </div>
-                <div class="col-4">
+            </div>
+            <div class="row">
+                <div class="col-6">
                     <div class="form-group">
                         @Html.LabelFor(x => x.Phone)
                         @Html.EditorFor(x => x.Phone, new { htmlAttributes = new { @class = "form-control", @id = "phoneInput", placeholder = "Telefone do Cliente" }})
                     </div>
                 </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.CreatedAt)
+                        @Html.EditorFor(x => x.CreatedAt, new { htmlAttributes = new { @class = "form-control", disabled = true }})
+                    </div>
+                </div>
             </div>
+
             <br />
 
             <h3 class="submenu-title">Informações Pessoais</h3>
