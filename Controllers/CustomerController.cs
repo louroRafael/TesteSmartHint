@@ -27,7 +27,7 @@ namespace TesteSmartHint.Controllers
 
         public IActionResult Register()
         {
-            var model = new CustomerViewModel
+            var model = new CustomerRegisterViewModel
             {
                 CreatedAt = DateTime.Now
             };
@@ -35,16 +35,28 @@ namespace TesteSmartHint.Controllers
             return View(model);
         }
 
-        public IActionResult Save(CustomerViewModel customer)
+        //[HttpPost]
+        //public IActionResult Register(CustomerRegisterViewModel model)
+        //{
+        //    return View(model);
+        //}
+
+        [HttpPost]
+        public IActionResult Register(CustomerRegisterViewModel customer)
         {
-            var model = _mapper.Map<Customer>(customer);
+            if (ModelState.IsValid)
+            {
+                var model = _mapper.Map<Customer>(customer);
 
-            if (model.Id == Guid.Empty)
-                _customerRepository.Add(model);
-            else
-                _customerRepository.Update(model);
+                if (model.Id == Guid.Empty)
+                    _customerRepository.Add(model);
+                else
+                    _customerRepository.Update(model);
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+
+            return View(customer);
         }
     }
 }

@@ -34,3 +34,28 @@ body {
     font-size: 16px;
     text-transform: uppercase;
 }
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-check-input {
+    height: 30px;
+    width: 30px;
+}
+
+.password-container {
+    position: relative;
+}
+
+.password-view-toggle {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    height: 32px;
+    width: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

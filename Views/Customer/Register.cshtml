@@ -1,5 +1,6 @@
-﻿@using TesteSmartHint.Web.ViewModels.Customer;
-@model CustomerViewModel
+﻿@using TesteSmartHint.Domain.Enums;
+@using TesteSmartHint.Web.ViewModels.Customer;
+@model CustomerRegisterViewModel
 @{
     ViewData["Title"] = "Cadastro de Cliente";
 }
@@ -19,35 +20,41 @@
 
 <div class="card">
     <div class="card-body">
-        @using(Html.BeginForm("Save", "Customer", FormMethod.Post, new { id = "formRegisterCustomer", autocomplete = "off" }))
+        @using (Html.BeginForm("Register", "Customer", FormMethod.Post, new { id = "formRegisterCustomer", @class = "form-horizontal", autocomplete = "off" }))
         {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.AntiForgeryToken()
             <h3 class="submenu-title">Principal</h3>
             <hr />
             <div class="row">
                 <div class="col-6">
-                    <div class="form-group">
+                    <div class="form-group" data-toggle="tooltip" title="Nome completo ou Razão Social do Cliente">
                         @Html.LabelFor(x => x.Name)
                         @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Nome ou Razão Social do Cliente", maxlength = "150" }})
+                        @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="form-group">
+                    <div class="form-group" data-toggle="tooltip" title="E-mail do Cliente">
                         @Html.LabelFor(x => x.Email)
                         @Html.EditorFor(x => x.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "E-mail do Cliente", maxlength = "150" }})
+                        @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-6">
-                    <div class="form-group">
+                    <div class="form-group" data-toggle="tooltip" title="Telefone do Cliente">
                         @Html.LabelFor(x => x.Phone)
                         @Html.EditorFor(x => x.Phone, new { htmlAttributes = new { @class = "form-control", @id = "phoneInput", placeholder = "Telefone do Cliente" }})
+                        @Html.ValidationMessageFor(x => x.Phone, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="form-group">
+                    <div class="form-group" data-toggle="tooltip" title="Data de cadastro do Cliente">
                         @Html.LabelFor(x => x.CreatedAt)
                         @Html.EditorFor(x => x.CreatedAt, new { htmlAttributes = new { @class = "form-control", disabled = true }})
+                        @Html.ValidationMessageFor(x => x.CreatedAt, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -57,7 +64,99 @@
             <h3 class="submenu-title">Informações Pessoais</h3>
             <hr />
             <div class="row">
+                <div class="col-6">
+                    <div class="form-group" data-toggle="tooltip" title="Selecione o tipo de Pessoa">
+                        @Html.LabelFor(x => x.Type)
+                        @Html.DropDownListFor(x => x.Type, new SelectList(EnumHelper.GetDictionary<PersonType>(), "Key", "Value"), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Type, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group" data-toggle="tooltip" title="Insira o CPF ou o CNPJ do Cliente">
+                        @Html.LabelFor(x => x.CpfCnpj)
+                        @Html.EditorFor(x => x.CpfCnpj, new { htmlAttributes = new { @class = "form-control", placeholder = "CPF/CNPJ do Cliente" }})
+                        @Html.ValidationMessageFor(x => x.CpfCnpj, "", new { @class = "text-danger" })
+                    </div>
+                </div>
             </div>
+            <div class="row" data-toggle="tooltip" title="Inscrição Estadual do Cliente, selecionar Isento caso assim for">
+                <div class="col-6">
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.StateRegistration)
+                        @Html.EditorFor(x => x.StateRegistration, new { htmlAttributes = new { @class = "form-control", placeholder = "Inscrição Estadual do Cliente" }})
+                        @Html.ValidationMessageFor(x => x.StateRegistration, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        @Html.LabelFor(x => x.Exempt)
+                        @Html.CheckBoxFor(x => x.Exempt, new { @class = "form-check-input" })
+                        @Html.ValidationMessageFor(x => x.Exempt, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapse row" id="naturalPersonInfo">
+                <div class="col-6">
+                    <div class="form-group" data-toggle="tooltip" title="Selecione o gênero do Cliente">
+                        @Html.LabelFor(x => x.Gender)
+                        @Html.DropDownListFor(x => x.Gender, new SelectList(EnumHelper.GetDictionary<Gender>(), "Key", "Value"), new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Gender, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group" data-toggle="tooltip" title="Data de nascimento do Cliente">
+                        @Html.LabelFor(x => x.Birth)
+                        @Html.EditorFor(x => x.Birth, new { htmlAttributes = new { @class = "form-control datepicker" }})
+                        @Html.ValidationMessageFor(x => x.Birth, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <br />
+
+            <h3 class="submenu-title">Situação do Cliente</h3>
+            <hr />
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group" data-toggle="tooltip" title="Bloqueio do acesso do Cliente na sua Loja">
+                        @Html.LabelFor(x => x.Blocked)
+                        @Html.CheckBoxFor(x => x.Blocked, new { @class = "form-check-input" })
+                        @Html.ValidationMessageFor(x => x.Blocked, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <br />
+
+            <div data-toggle="tooltip" title="Cadastre a senha de acesso do seu Cliente">
+                <h3 class="submenu-title">Senha de Acesso</h3>
+                <hr />
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Password)
+                            <div class="password-container">
+                                @Html.EditorFor(x => x.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Informe uma senha", type = "password" }})
+                                <button id="btnTogglePassword" class="btn btn-primary password-view-toggle" type="button" onclick="toggleViewPassword('Password')"><i class="bi bi-eye"></i></button>
+                            </div>
+                            @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.PasswordConfirm)
+                            <div class="password-container">
+                                @Html.EditorFor(x => x.PasswordConfirm, new { htmlAttributes = new { @class = "form-control", placeholder = "Confirme sua senha", type = "password" }})
+                                <button id="btnTogglePasswordConfirm" class="btn btn-primary password-view-toggle" type="button" onclick="toggleViewPassword('PasswordConfirm')"><i class="bi bi-eye"></i></button>
+                            </div>
+                            @Html.ValidationMessageFor(x => x.PasswordConfirm, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+
             <div class="row">
                 <button type="submit" class="btn btn-primary">
                     <i class="bi bi-person-plus"></i>

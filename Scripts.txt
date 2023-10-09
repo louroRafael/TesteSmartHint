@@ -14,3 +14,73 @@ CREATE TABLE `Customers` (
     `CreatedAt` datetime(6) NOT NULL,
     CONSTRAINT `PK_Customers` PRIMARY KEY (`Id`)
 );
+
+Executed DbCommand (118ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='TesteSmartHint' AND TABLE_NAME='__EFMigrationsHistory';
+Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (118ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='TesteSmartHint' AND TABLE_NAME='__EFMigrationsHistory';
+Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='TesteSmartHint' AND TABLE_NAME='__EFMigrationsHistory';
+Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='TesteSmartHint' AND TABLE_NAME='__EFMigrationsHistory';
+Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT `MigrationId`, `ProductVersion`
+FROM `__EFMigrationsHistory`
+ORDER BY `MigrationId`;
+Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT `MigrationId`, `ProductVersion`
+      FROM `__EFMigrationsHistory`
+      ORDER BY `MigrationId`;
+Microsoft.EntityFrameworkCore.Migrations[20402]
+      Applying migration '20231009132730_AddPersonInfoColumns'.
+Applying migration '20231009132730_AddPersonInfoColumns'.
+Executed DbCommand (113ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE `Customers` ADD `Birth` date NOT NULL DEFAULT '0001-01-01';
+Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (113ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE `Customers` ADD `Birth` date NOT NULL DEFAULT '0001-01-01';
+Executed DbCommand (18ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE `Customers` ADD `Blocked` tinyint(1) NOT NULL DEFAULT FALSE;
+Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (18ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE `Customers` ADD `Blocked` tinyint(1) NOT NULL DEFAULT FALSE;
+Executed DbCommand (14ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE `Customers` ADD `CpfCnpj` longtext CHARACTER SET utf8mb4 NOT NULL;
+Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (14ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE `Customers` ADD `CpfCnpj` longtext CHARACTER SET utf8mb4 NOT NULL;
+Executed DbCommand (14ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE `Customers` ADD `Exempt` tinyint(1) NOT NULL DEFAULT FALSE;
+Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (14ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE `Customers` ADD `Exempt` tinyint(1) NOT NULL DEFAULT FALSE;
+Executed DbCommand (16ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE `Customers` ADD `Gender` int NOT NULL DEFAULT 0;
+Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (16ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE `Customers` ADD `Gender` int NOT NULL DEFAULT 0;
+Executed DbCommand (19ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE `Customers` ADD `Password` longtext CHARACTER SET utf8mb4 NOT NULL;
+Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (19ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE `Customers` ADD `Password` longtext CHARACTER SET utf8mb4 NOT NULL;
+Executed DbCommand (151ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE `Customers` ADD `StateRegistration` longtext CHARACTER SET utf8mb4 NOT NULL;
+Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (151ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE `Customers` ADD `StateRegistration` longtext CHARACTER SET utf8mb4 NOT NULL;
+Executed DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+ALTER TABLE `Customers` ADD `Type` int NOT NULL DEFAULT 0;
+Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      ALTER TABLE `Customers` ADD `Type` int NOT NULL DEFAULT 0;
+Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
+VALUES ('20231009132730_AddPersonInfoColumns', '7.0.11');
+Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
+      VALUES ('20231009132730_AddPersonInfoColumns', '7.0.11');

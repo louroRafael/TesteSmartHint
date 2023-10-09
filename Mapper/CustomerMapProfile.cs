@@ -9,6 +9,7 @@ namespace TesteSmartHint.Web.Mapper
         public CustomerMapProfile()
         {
             CreateMap<CustomerViewModel, Customer>();
+            CreateMap<CustomerRegisterViewModel, Customer>();
 
             CreateMap<Customer, CustomerViewModel>();
         }
