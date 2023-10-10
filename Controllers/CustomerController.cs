@@ -107,5 +107,14 @@ namespace TesteSmartHint.Controllers
 
             return View("Register", customer);
         }
+
+        [HttpPost]
+        public void ChangeBlockStatus(Guid customerId, bool customerBlocked)
+        {
+            var customer = _customerService.GetById(customerId);
+            customer.Blocked = customerBlocked;
+
+            _customerService.Update(customer);
+        }
     }
 }

@@ -127,3 +127,18 @@ function goToPage(pageIndex) {
     $("#FilterPage").val(pageIndex);
     $("#formCustomerFilter").submit();
 }
+
+function changeBlockStatus(id, el) {
+    $.ajax({
+        type: "POST",
+        url: "/Customer/ChangeBlockStatus",
+        data: { customerId: id, customerBlocked: $(el).prop("checked") },
+        success: function () {
+            $("#toastTitle").text("Sucesso!");
+            $("#toastMessage").text("Status bloqueado do cliente foi alterado.");
+            $("#notificationToast").addClass("toast success-toast");
+            $("#toastIcon").addClass("bi bi-check-circle");
+            $("#notificationToast").toast("show");
+        }
+    });
+}

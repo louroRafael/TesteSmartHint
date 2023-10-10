@@ -130,7 +130,7 @@
                 <td>@customer.Phone</td>
                 <td>@customer.CreatedAt</td>
                 <td>
-                    <input class="form-check-input" type="checkbox" checked="@customer.Blocked" disabled="true" />
+                    <input class="form-check-input" type="checkbox" checked="@customer.Blocked" onchange="changeBlockStatus('@customer.Id', this)" />
                 </td>
                 <td>
                     @Html.ActionLink("Editar", "Edit", new {id = customer.Id}, new { @class = "btn btn-primary" })
