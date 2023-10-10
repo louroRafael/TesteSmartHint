@@ -13,3 +13,9 @@ Projeto permite cadastrar clientes e listá-los
 
 */Config* -> Tela para configurações (Usada para marcar opção de Inscrição Estadual para pessoa física)
 ![image](https://github.com/louroRafael/TesteSmartHint/assets/85233181/174abb62-9f01-41fe-9981-034190e1ec2b)
+
+## Informações :information_source:
+Foi utilizado EntityFramework e as tabelas foram criadas através de Migrations -> *Update-Database*
+O arquivo Scripts.txt contém o -Verbose gerado pelo update das migrations.
+
+![image](https://github.com/louroRafael/TesteSmartHint/assets/85233181/2a64c6ca-c37e-4917-a831-7afad46f47e1)
