@@ -1,221 +1,29 @@
 CREATE DATABASE `TesteSmartHint`;
 
-      CREATE TABLE `__EFMigrationsHistory` (
-          `MigrationId` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
-          `ProductVersion` varchar(32) CHARACTER SET utf8mb4 NOT NULL,
-          CONSTRAINT `PK___EFMigrationsHistory` PRIMARY KEY (`MigrationId`)
-      )
-
 CREATE TABLE `Customers` (
     `Id` char(36) COLLATE ascii_general_ci NOT NULL,
     `Name` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
     `Email` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
     `Phone` longtext CHARACTER SET utf8mb4 NOT NULL,
     `CreatedAt` datetime(6) NOT NULL,
+    `Birth` datetime(6) NULL,
+    `Blocked` tinyint(1) NOT NULL DEFAULT FALSE,
+    `CpfCnpj` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `Exempt` tinyint(1) NOT NULL DEFAULT FALSE,
+    `Gender` int NULL,
+    `Password` longtext CHARACTER SET utf8mb4 NOT NULL,
+    `StateRegistration` longtext CHARACTER SET utf8mb4 NULL,
+    `Type` int NOT NULL DEFAULT 0,
     CONSTRAINT `PK_Customers` PRIMARY KEY (`Id`)
 );
 
-Executed DbCommand (118ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='TesteSmartHint' AND TABLE_NAME='__EFMigrationsHistory';
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (118ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='TesteSmartHint' AND TABLE_NAME='__EFMigrationsHistory';
-Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='TesteSmartHint' AND TABLE_NAME='__EFMigrationsHistory';
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='TesteSmartHint' AND TABLE_NAME='__EFMigrationsHistory';
-Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-SELECT `MigrationId`, `ProductVersion`
-FROM `__EFMigrationsHistory`
-ORDER BY `MigrationId`;
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      SELECT `MigrationId`, `ProductVersion`
-      FROM `__EFMigrationsHistory`
-      ORDER BY `MigrationId`;
-Microsoft.EntityFrameworkCore.Migrations[20402]
-      Applying migration '20231009132730_AddPersonInfoColumns'.
-Applying migration '20231009132730_AddPersonInfoColumns'.
-Executed DbCommand (113ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-ALTER TABLE `Customers` ADD `Birth` date NOT NULL DEFAULT '0001-01-01';
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (113ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      ALTER TABLE `Customers` ADD `Birth` date NOT NULL DEFAULT '0001-01-01';
-Executed DbCommand (18ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-ALTER TABLE `Customers` ADD `Blocked` tinyint(1) NOT NULL DEFAULT FALSE;
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (18ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      ALTER TABLE `Customers` ADD `Blocked` tinyint(1) NOT NULL DEFAULT FALSE;
-Executed DbCommand (14ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-ALTER TABLE `Customers` ADD `CpfCnpj` longtext CHARACTER SET utf8mb4 NOT NULL;
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (14ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      ALTER TABLE `Customers` ADD `CpfCnpj` longtext CHARACTER SET utf8mb4 NOT NULL;
-Executed DbCommand (14ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-ALTER TABLE `Customers` ADD `Exempt` tinyint(1) NOT NULL DEFAULT FALSE;
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (14ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      ALTER TABLE `Customers` ADD `Exempt` tinyint(1) NOT NULL DEFAULT FALSE;
-Executed DbCommand (16ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-ALTER TABLE `Customers` ADD `Gender` int NOT NULL DEFAULT 0;
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (16ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      ALTER TABLE `Customers` ADD `Gender` int NOT NULL DEFAULT 0;
-Executed DbCommand (19ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-ALTER TABLE `Customers` ADD `Password` longtext CHARACTER SET utf8mb4 NOT NULL;
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (19ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      ALTER TABLE `Customers` ADD `Password` longtext CHARACTER SET utf8mb4 NOT NULL;
-Executed DbCommand (151ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-ALTER TABLE `Customers` ADD `StateRegistration` longtext CHARACTER SET utf8mb4 NOT NULL;
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (151ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      ALTER TABLE `Customers` ADD `StateRegistration` longtext CHARACTER SET utf8mb4 NOT NULL;
-Executed DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-ALTER TABLE `Customers` ADD `Type` int NOT NULL DEFAULT 0;
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      ALTER TABLE `Customers` ADD `Type` int NOT NULL DEFAULT 0;
-Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
-VALUES ('20231009132730_AddPersonInfoColumns', '7.0.11');
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
-      VALUES ('20231009132730_AddPersonInfoColumns', '7.0.11');
-
---------------------------
-
-      Executed DbCommand (62ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='TesteSmartHint' AND TABLE_NAME='__EFMigrationsHistory';
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (62ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='TesteSmartHint' AND TABLE_NAME='__EFMigrationsHistory';
-Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='TesteSmartHint' AND TABLE_NAME='__EFMigrationsHistory';
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='TesteSmartHint' AND TABLE_NAME='__EFMigrationsHistory';
-Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-SELECT `MigrationId`, `ProductVersion`
-FROM `__EFMigrationsHistory`
-ORDER BY `MigrationId`;
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      SELECT `MigrationId`, `ProductVersion`
-      FROM `__EFMigrationsHistory`
-      ORDER BY `MigrationId`;
-Microsoft.EntityFrameworkCore.Migrations[20402]
-      Applying migration '20231010052105_ModifyBirthDataType'.
-Applying migration '20231010052105_ModifyBirthDataType'.
-Executed DbCommand (241ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-ALTER TABLE `Customers` MODIFY COLUMN `Birth` datetime(6) NOT NULL;
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (241ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      ALTER TABLE `Customers` MODIFY COLUMN `Birth` datetime(6) NOT NULL;
-Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
-VALUES ('20231010052105_ModifyBirthDataType', '7.0.11');
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
-      VALUES ('20231010052105_ModifyBirthDataType', '7.0.11');
-Done.
-
-------------------
-
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (22ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='TesteSmartHint' AND TABLE_NAME='__EFMigrationsHistory';
-Executed DbCommand (22ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='TesteSmartHint' AND TABLE_NAME='__EFMigrationsHistory';
-Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='TesteSmartHint' AND TABLE_NAME='__EFMigrationsHistory';
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='TesteSmartHint' AND TABLE_NAME='__EFMigrationsHistory';
-Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-SELECT `MigrationId`, `ProductVersion`
-FROM `__EFMigrationsHistory`
-ORDER BY `MigrationId`;
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      SELECT `MigrationId`, `ProductVersion`
-      FROM `__EFMigrationsHistory`
-      ORDER BY `MigrationId`;
-Microsoft.EntityFrameworkCore.Migrations[20402]
-      Applying migration '20231010052549_StateRegistrationColumnNullable'.
-Applying migration '20231010052549_StateRegistrationColumnNullable'.
-Executed DbCommand (77ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-ALTER TABLE `Customers` MODIFY COLUMN `StateRegistration` longtext CHARACTER SET utf8mb4 NULL;
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (77ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      ALTER TABLE `Customers` MODIFY COLUMN `StateRegistration` longtext CHARACTER SET utf8mb4 NULL;
-Executed DbCommand (32ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-ALTER TABLE `Customers` MODIFY COLUMN `Gender` int NULL;
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (32ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      ALTER TABLE `Customers` MODIFY COLUMN `Gender` int NULL;
-Executed DbCommand (38ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-ALTER TABLE `Customers` MODIFY COLUMN `Birth` datetime(6) NULL;
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (38ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      ALTER TABLE `Customers` MODIFY COLUMN `Birth` datetime(6) NULL;
-Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
-VALUES ('20231010052549_StateRegistrationColumnNullable', '7.0.11');
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
-      VALUES ('20231010052549_StateRegistrationColumnNullable', '7.0.11');
-Done.
-
-----------------------------------
-
-SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='TesteSmartHint' AND TABLE_NAME='__EFMigrationsHistory';
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (129ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='TesteSmartHint' AND TABLE_NAME='__EFMigrationsHistory';
-Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='TesteSmartHint' AND TABLE_NAME='__EFMigrationsHistory';
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='TesteSmartHint' AND TABLE_NAME='__EFMigrationsHistory';
-Executed DbCommand (7ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-SELECT `MigrationId`, `ProductVersion`
-FROM `__EFMigrationsHistory`
-ORDER BY `MigrationId`;
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (7ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      SELECT `MigrationId`, `ProductVersion`
-      FROM `__EFMigrationsHistory`
-      ORDER BY `MigrationId`;
-Microsoft.EntityFrameworkCore.Migrations[20402]
-      Applying migration '20231010154531_AddConfigTable'.
-Applying migration '20231010154531_AddConfigTable'.
-Executed DbCommand (152ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
 CREATE TABLE `Configs` (
     `Id` char(36) COLLATE ascii_general_ci NOT NULL,
     `Name` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
     `Description` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
     `Value` tinyint(1) NOT NULL,
     CONSTRAINT `PK_Configs` PRIMARY KEY (`Id`)
-) CHARACTER SET=utf8mb4;
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (152ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      CREATE TABLE `Configs` (
-          `Id` char(36) COLLATE ascii_general_ci NOT NULL,
-          `Name` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
-          `Description` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
-          `Value` tinyint(1) NOT NULL,
-          CONSTRAINT `PK_Configs` PRIMARY KEY (`Id`)
-      ) CHARACTER SET=utf8mb4;
-Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
-VALUES ('20231010154531_AddConfigTable', '7.0.11');
-Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      INSERT INTO `__EFMigrationsHistory` (`MigrationId`, `ProductVersion`)
-      VALUES ('20231010154531_AddConfigTable', '7.0.11');
-Done.
+)
+
+INSERT INTO `Configs` 
+    VALUES(uuid(), 'StateRegistrationForNaturalPerson', 'Inscrição estadual para Pessoa Física', true)
