@@ -85,7 +85,7 @@ function filterCustomers() {
 }
 
 function enableStateRegistration() {
-    $("#StateRegistration").prop("disabled", ($("#Type").val() == 0 && $("#StateRegistrationForNaturalPerson").val()) || $("#Exempt").prop("checked"));
+    $("#StateRegistration").prop("disabled", ((($("#Type").val() == 0) && ($("#StateRegistrationForNaturalPerson").val() == "False"))) || $("#Exempt").prop("checked"));
 }
 
 function showNaturalPersonInfo() {
