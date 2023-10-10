@@ -1,20 +1,20 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 .page-header {
@@ -58,4 +58,51 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.toast {
+    opacity: .96;
+}
+
+.toast-header {
+    background-color: rgba(255, 255, 255, .1);
+    color: white;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+
+    .toast-header .toast-close {
+        background: none;
+        border: none;
+        width: 25px;
+        height: 25px;
+        color: white;
+        font-size: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.2s;
+    }
+
+        .toast-header .toast-close:hover {
+            font-size: 20px;
+        }
+
+.toast-body {
+    font-size: 15px;
+}
+
+#toastIcon {
+    font-size: 25px;
+    margin-right: 10px;
+}
+
+.error-toast {
+    background-color: indianred;
+    color: white;
+}
+
+.success-toast {
+    background-color: mediumseagreen;
+    color: white;
 }

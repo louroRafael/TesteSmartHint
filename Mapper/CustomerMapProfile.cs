@@ -12,6 +12,7 @@ namespace TesteSmartHint.Web.Mapper
             CreateMap<CustomerRegisterViewModel, Customer>();
 
             CreateMap<Customer, CustomerViewModel>();
+            CreateMap<Customer, CustomerRegisterViewModel>();
         }
     }
 }

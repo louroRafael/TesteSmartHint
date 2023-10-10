@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TesteSmartHint.Domain.Interfaces;
+using TesteSmartHint.Domain.Services;
 using TesteSmartHint.Infra.Context;
 using TesteSmartHint.Infra.Repositories;
 using TesteSmartHint.Infra.Settings;
@@ -12,6 +13,7 @@ var settings = builder.Configuration.Get<Settings>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddAutoMapper(typeof(CustomerMapProfile));
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
 
 builder.Services.AddDbContext<MyContext>(options =>
 {

@@ -53,7 +53,7 @@
                 <div class="col-6">
                     <div class="form-group" data-toggle="tooltip" title="Data de cadastro do Cliente">
                         @Html.LabelFor(x => x.CreatedAt)
-                        @Html.EditorFor(x => x.CreatedAt, new { htmlAttributes = new { @class = "form-control", disabled = true }})
+                        @Html.EditorFor(x => x.CreatedAt, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" }})
                         @Html.ValidationMessageFor(x => x.CreatedAt, "", new { @class = "text-danger" })
                     </div>
                 </div>

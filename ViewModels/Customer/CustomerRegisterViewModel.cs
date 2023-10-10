@@ -21,7 +21,7 @@ namespace TesteSmartHint.Web.ViewModels.Customer
         public string Email { get; set; }
 
         [Required(ErrorMessage = "O campo Telefone é obrigatório")]
-        [MaxLength(14, ErrorMessage = "O telefone deve possuir no máximo 11 dígitos")]
+        [MaxLength(15, ErrorMessage = "O telefone deve possuir no máximo 11 dígitos")]
         [DisplayName("Telefone")]
         public string Phone { get; set; }
 
@@ -48,7 +48,7 @@ namespace TesteSmartHint.Web.ViewModels.Customer
 
         [RequiredNaturalPerson(nameof(Type), ErrorMessage = "O campo Gênero é obrigatório")]
         [DisplayName("Gênero")]
-        public Gender Gender { get; set; }
+        public Gender? Gender { get; set; }
 
         [RequiredNaturalPerson(nameof(Type), ErrorMessage = "O campo Data de Nascimento é obrigatório")]
         [DataType(DataType.Date)]
