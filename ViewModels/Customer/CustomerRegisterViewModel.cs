@@ -38,7 +38,7 @@ namespace TesteSmartHint.Web.ViewModels.Customer
         [DisplayName("CPF/CNPJ")]
         public string CpfCnpj { get; set; }
 
-        [RequiredStateRegistration(nameof(Exempt), nameof(Type), ErrorMessage = "O campo Inscrição Estadual é obrigatório")]
+        [RequiredStateRegistration(nameof(Exempt), nameof(Type), nameof(StateRegistrationForNaturalPerson), ErrorMessage = "O campo Inscrição Estadual é obrigatório")]
         [MaxLength(15, ErrorMessage = "O campo Incrição Estadual deve possuir no máximo 12 dígitos")]
         [DisplayName("Inscrição Estadual")]
         public string? StateRegistration { get; set; }
@@ -70,5 +70,7 @@ namespace TesteSmartHint.Web.ViewModels.Customer
         [Compare("Password", ErrorMessage = "As senhas não conferem.")]
         [DisplayName("Confirmação Senha")]
         public string PasswordConfirm { get; set; }
+
+        public virtual bool StateRegistrationForNaturalPerson { get; set; }
     }
 }

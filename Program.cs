@@ -12,8 +12,11 @@ var settings = builder.Configuration.Get<Settings>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddAutoMapper(typeof(CustomerMapProfile));
+builder.Services.AddAutoMapper(typeof(ConfigMapProfile));
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IConfigRepository, ConfigRepository>();
+builder.Services.AddScoped<IConfigService, ConfigService>();
 
 builder.Services.AddDbContext<MyContext>(options =>
 {

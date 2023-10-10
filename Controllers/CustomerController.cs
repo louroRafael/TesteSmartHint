@@ -12,13 +12,16 @@ namespace TesteSmartHint.Controllers
     public class CustomerController : Controller
     {
         private readonly ICustomerService _customerService;
+        private readonly IConfigService _configService;
         private readonly IMapper _mapper;
 
         public CustomerController(
             ICustomerService customerService,
+            IConfigService configService,
             IMapper mapper)
         {
             _customerService = customerService;
+            _configService = configService;
             _mapper = mapper;
         }
 
@@ -34,7 +37,8 @@ namespace TesteSmartHint.Controllers
         {
             var model = new CustomerRegisterViewModel
             {
-                CreatedAt = DateTime.Now
+                CreatedAt = DateTime.Now,
+                StateRegistrationForNaturalPerson = _configService.GetByName("StateRegistrationForNaturalPerson")?.Value ?? false
             };
 
             return View(model);
@@ -45,6 +49,8 @@ namespace TesteSmartHint.Controllers
         {
             try
             {
+                var stateRegistrationForNaturalPerson = _configService.GetByName("StateRegistrationForNaturalPerson")?.Value ?? false;
+
                 if (ModelState.IsValid)
                 {
                     var model = _mapper.Map<Customer>(customer);
@@ -55,7 +61,7 @@ namespace TesteSmartHint.Controllers
                     if(!_customerService.ValidateCpfCnpj(model.CpfCnpj, model.Id))
                         throw new Exception("Este CPF/CNPJ já está cadastrado para outro Cliente");
 
-                    if(model.Type == PersonType.LegalPerson && !model.Exempt)
+                    if((model.Type == PersonType.LegalPerson || stateRegistrationForNaturalPerson) && !model.Exempt)
                         if(!_customerService.ValidateStateRegistration(model.StateRegistration, model.Id))
                             throw new Exception("Esta Inscrição Estadual já está cadastrada para outro Cliente");
 
@@ -97,6 +103,7 @@ namespace TesteSmartHint.Controllers
         {
             var customer = _mapper.Map<CustomerRegisterViewModel>(_customerService.GetById(id));
             customer.PasswordConfirm = customer.Password;
+            customer.StateRegistrationForNaturalPerson = _configService.GetByName("StateRegistrationForNaturalPerson")?.Value ?? false;
 
             return View("Register", customer);
         }
