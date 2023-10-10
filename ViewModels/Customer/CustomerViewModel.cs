@@ -8,11 +8,9 @@ namespace TesteSmartHint.Web.ViewModels.Customer
         [Key]
         public Guid Id { get; set; }
 
-        [Required, MaxLength(150)]
         [DisplayName("Nome do Cliente/Razão Social")]
         public string Name { get; set; }
 
-        [Required, EmailAddress, MaxLength(150)]
         [DisplayName("E-mail")]
         public string Email { get; set; }
 
@@ -20,8 +18,10 @@ namespace TesteSmartHint.Web.ViewModels.Customer
         [DisplayName("Telefone")]
         public string Phone { get; set; }
 
-        [DataType(DataType.Date)]
         [DisplayName("Data de Cadastro")]
-        public DateTime CreatedAt { get; set; }
+        public string CreatedAt { get; set; }
+
+        [DisplayName("Bloqueado")]
+        public bool Blocked { get; set; }
     }
 }

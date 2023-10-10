@@ -2,8 +2,9 @@
     fieldsMask();
     enableStateRegistration();
     showNaturalPersonInfo();
+    showFilterTags();
 
-    $("#dateRangeInput").daterangepicker({
+    $("#FilterByDate").daterangepicker({
         opens: 'left',
         drops: 'down',
         autoApply: true,
@@ -15,6 +16,7 @@
             monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
         }
     });
+    $("#FilterByDate").val("");
 
     $("#Exempt").click(function () {
         enableStateRegistration();
@@ -23,6 +25,18 @@
     $("#Type").change(function () {
         enableStateRegistration();
         showNaturalPersonInfo();
+    });
+
+    $("#selectedAll").click(function () {
+        $(".customer-check").prop("checked", $("#selectedAll").prop("checked"));
+    });
+
+    $(".customer-check").click(function () {
+        $("#selectedAll").prop("checked", true);
+        $(".customer-check").each(function () {
+            if (!$(this).prop("checked"))
+                $("#selectedAll").prop("checked", false);
+        });
     });
 });
 
@@ -41,7 +55,29 @@ function fieldsMask() {
 }
 
 function clearForm() {
-    $("#formCustomerFilter")[0].reset();
+    $("#FilterByName").val(null);
+    $("#FilterByEmail").val(null);
+    $("#FilterByPhone").val(null);
+    $("#FilterByDate").val(null);
+    $("#FilterByBlocked").val(null);
+
+    $("#formCustomerFilter").submit();
+}
+
+function removeFilter(id) {
+    $(`#${id}`).val(null);
+    $("#formCustomerFilter").submit();
+}
+
+function showFilterTags() {
+    $(".customer-filter").each(function () {
+        var id = $(this).attr("id");
+
+        if($(`#${id}`).val() != "")
+            $(`#Tag${id}`).show();
+        else
+            $(`#Tag${id}`).hide();
+    });
 }
 
 function filterCustomers() {
@@ -71,4 +107,23 @@ function toggleViewPassword(id) {
         $(`#${id}`).attr("type", "password");
         $(`#btnToggle${id} i`).addClass("bi bi-eye")
     }
+}
+
+function nextPage() {
+    var currentPage = parseInt($("#FilterPage").val());
+
+    $("#FilterPage").val(currentPage + 1);
+    $("#formCustomerFilter").submit();
+}
+
+function previousPage() {
+    var currentPage = parseInt($("#FilterPage").val());
+
+    $("#FilterPage").val(currentPage - 1);
+    $("#formCustomerFilter").submit();
+}
+
+function goToPage(pageIndex) {
+    $("#FilterPage").val(pageIndex);
+    $("#formCustomerFilter").submit();
 }

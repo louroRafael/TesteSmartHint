@@ -24,6 +24,7 @@
         {
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.AntiForgeryToken()
+            @Html.HiddenFor(x => x.Id);
             <h3 class="submenu-title">Principal</h3>
             <hr />
             <div class="row">
@@ -160,7 +161,7 @@
             <div class="row">
                 <button type="submit" class="btn btn-primary">
                     <i class="bi bi-person-plus"></i>
-                    Adicionar Cliente
+                    @(Model.Id == Guid.Empty ? "Adicionar Cliente" : "Salvar Cliente")
                 </button>
             </div>
         }

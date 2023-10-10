@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using TesteSmartHint.Domain.DTO;
 using TesteSmartHint.Domain.Entities;
 using TesteSmartHint.Web.ViewModels.Customer;
 
@@ -8,11 +9,13 @@ namespace TesteSmartHint.Web.Mapper
     {
         public CustomerMapProfile()
         {
-            CreateMap<CustomerViewModel, Customer>();
             CreateMap<CustomerRegisterViewModel, Customer>();
-
-            CreateMap<Customer, CustomerViewModel>();
             CreateMap<Customer, CustomerRegisterViewModel>();
+
+            CreateMap<Customer, CustomerViewModel>()
+                .ForMember(vm => vm.CreatedAt, op => op.MapFrom(e => e.CreatedAt.ToString("dd/MM/yyyy")));
+
+            CreateMap<CustomerFilterViewModel, CustomerFilter>();
         }
     }
 }

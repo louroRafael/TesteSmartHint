@@ -1,4 +1,7 @@
-﻿@{
+﻿@using TesteSmartHint.Web.ViewModels.Customer;
+@using TesteSmartHint.Domain.Entities;
+@model PagedResult<CustomerViewModel>
+@{
     ViewData["Title"] = "Lista de Clientes";
 }
 
@@ -22,51 +25,82 @@
 <div class="collapse filter-options" id="customerFilter">
     <div class="card">
         <div class="card-body">
-            <form id="formCustomerFilter">
+            @using (Html.BeginForm("Index", "Customer", FormMethod.Get, new { @id = "formCustomerFilter", autocomplete = "off" }))
+            {
+                @Html.Hidden("Filter.Page", Model.CurrentPage, new { @id = "FilterPage" })
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="nameInput">Nome/Razão Social</label>
-                            <input type="text" class="form-control" id="nameInput" placeholder="Nome ou Razão Social do Cliente">
+                            <label for="FilterByName">Nome/Razão Social</label>
+                            @Html.TextBox("Filter.ByName", "", new { @class = "form-control customer-filter", @id = "FilterByName", @placeholder = "Nome ou Razão Social do Cliente" })
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="emailInput">E-mail</label>
-                            <input type="text" class="form-control" id="emailInput" placeholder="E-mail do Cliente">
+                            <label for="FilterByEmail">E-mail</label>
+                            @Html.TextBox("Filter.ByEmail", "", new { @class = "form-control customer-filter", @id = "FilterByEmail", @placeholder = "E-mail do Cliente" })
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-5">
                         <div class="form-group">
-                            <label for="phoneInput">Telefone</label>
-                            <input type="tel" class="form-control" id="phoneInput" placeholder="Telefone do Cliente">
+                            <label for="FilterByPhone">Telefone</label>
+                            @Html.TextBox("Filter.ByPhone", "", new { @class = "form-control customer-filter", @id = "FilterByPhone", @placeholder = "Telefone do Cliente" })
                         </div>
                     </div>
                     <div class="col-5">
                         <div class="form-group">
-                            <label for="dateInput">Data de Cadastro</label>
-                            <input type="text" class="form-control" id="dateRangeInput" placeholder="Selecione uma Data ou Período">
+                            <label for="FilterByDate">Data de Cadastro</label>
+                            @Html.TextBox("Filter.ByDate", "", new { @class = "form-control customer-filter", @id = "FilterByDate", @placeholder = "Selecione uma Data ou Período" })
                         </div>
                     </div>
                     <div class="col-2">
                         <div class="form-group">
-                            <label for="customerBlockSelect">Cliente Bloqueado</label>
-                            <select class="form-control" id="customerBlockSelect">
-                                <option>Sim</option>
-                                <option>Não</option>
-                            </select>
+                            <label for="FilterByBlocked">Cliente Bloqueado</label>
+                            @Html.DropDownList("Filter.ByBlocked", new [] { new SelectListItem { Text = "Sim", Value="True" } , new SelectListItem { Text = "Não", Value="False"} }, "", new { @class = "form-control customer-filter", @id = "FilterByBlocked" })
                         </div>
                     </div>
                 </div>
-                <br/>
+                <br />
                 <div class="d-flex justify-content-end">
                     <button type="button" class="btn btn-secondary m-1" onclick="clearForm()">Limpar Filtros</button>
-                    <button type="button" class="btn btn-primary m-1" onclick="filterCustomers()">Aplicar</button>
+                    <button type="submit" class="btn btn-primary m-1">Aplicar</button>
                 </div>
-            </form>
+            }
         </div>
+    </div>
+</div>
+<div class="filter-tags-container">
+    <div class="filter-tag" id="TagFilterByName" style="display: none;">
+        Nome
+        <button class="btn-remove-filter" onclick="removeFilter('FilterByName')">
+            <i class="bi bi-x"></i>
+        </button>
+    </div>
+    <div class="filter-tag" id="TagFilterByEmail" style="display: none;">
+        E-mail
+        <button class="btn-remove-filter" onclick="removeFilter('FilterByEmail')">
+            <i class="bi bi-x"></i>
+        </button>
+    </div>
+    <div class="filter-tag" id="TagFilterByPhone" style="display: none;">
+        Telefone
+        <button class="btn-remove-filter" onclick="removeFilter('FilterByPhone')">
+            <i class="bi bi-x"></i>
+        </button>
+    </div>
+    <div class="filter-tag" id="TagFilterByDate" style="display: none;">
+        Data de Cadastro
+        <button class="btn-remove-filter" onclick="removeFilter('FilterByDate')">
+            <i class="bi bi-x"></i>
+        </button>
+    </div>
+    <div class="filter-tag" id="TagFilterByBlocked" style="display: none;">
+        Cliente Bloqueado
+        <button class="btn-remove-filter" onclick="removeFilter('FilterByBlocked')">
+            <i class="bi bi-x"></i>
+        </button>
     </div>
 </div>
 
@@ -74,7 +108,7 @@
     <thead>
         <tr>
             <th scope="col">
-                <input type="checkbox" id="selectedAll"/>
+                <input class="form-check-input" type="checkbox" id="selectedAll" />
             </th>
             <th scope="col">Nome/Razão Social</th>
             <th scope="col">E-mail</th>
@@ -85,6 +119,37 @@
         </tr>
     </thead>
     <tbody>
-
+        @foreach(var customer in Model.Items)
+        {
+            <tr>
+                <td>
+                    <input class="form-check-input customer-check" type="checkbox" />
+                </td>
+                <td>@customer.Name</td>
+                <td>@customer.Email</td>
+                <td>@customer.Phone</td>
+                <td>@customer.CreatedAt</td>
+                <td>
+                    <input class="form-check-input" type="checkbox" checked="@customer.Blocked" disabled="true" />
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new {id = customer.Id}, new { @class = "btn btn-primary" })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-end">
+        <li class="page-item @(Model.EnablePrevious ? "" : "disabled")">
+            <a class="page-link" onclick="previousPage()">Anterior</a>
+        </li>
+        @for (var pageIndex = 1; pageIndex <= Model.TotalPages; pageIndex++)
+        {
+            <li class="page-item @(pageIndex == Model.CurrentPage ? "page-active disabled" : "")"><a class="page-link" onclick="goToPage(@pageIndex)">@pageIndex</a></li>
+        }
+        <li class="page-item @(Model.EnableNext ? "" : "disabled")">
+            <a class="page-link" onclick="nextPage()">Próxima</a>
+        </li>
+    </ul>
+</nav>
